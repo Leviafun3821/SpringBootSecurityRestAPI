@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Employees</title>
+</head>
+<body>
+
+<h2>All Employees</h2>
+<br>
+
+<a href="/addNewEmployee">Add New Employee</a>
+<br><br>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+    <thead>
+    <tr style="background-color: #f4f4f4;">
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Operations</th>
+        <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${allEmps}">
+        <td th:text="${emp.name}">Name</td>
+        <td th:text="${emp.surname}">Surname</td>
+        <td th:text="${emp.department}">Department</td>
+        <td th:text="${emp.salary}">Salary</td>
+        <td>
+            <input type="button" value="Update"
+                   th:onclick="'window.location.href=\'' + @{/updateInfo(empId=${emp.id})} + '\''" />
+            <input type="button" value="Delete"
+                   th:onclick="'window.location.href=\'' + @{/deleteEmployee(empId=${emp.id})} + '\''" />
+        </td>
+        <td th:text="${emp.password}">Password</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" value="Logout" />
+</form>
+
+</body>
+</html>
+

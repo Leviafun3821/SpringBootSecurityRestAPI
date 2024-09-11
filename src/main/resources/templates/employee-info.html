@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h2>Employee Info</h2>
+<br>
+
+<form th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+    <!-- Скрытое поле для ID сотрудника -->
+    <input type="hidden" th:field="*{id}" />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" />
+    </div>
+
+    <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" th:field="*{surname}" />
+    </div>
+
+    <div class="form-group">
+        <label for="department">Department</label>
+        <input type="text" id="department" th:field="*{department}" />
+    </div>
+
+    <div class="form-group">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" th:field="*{salary}" />
+    </div>
+
+    <div class="form-group" th:if="${isNewEmployee}">
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" />
+    </div>
+
+    <input type="submit" value="OK">
+</form>
+
+</body>
+</html>
+
